@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Golos Text', sans-serif;
+    color: #393E41;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: #F6F7EB;
+}
+
+wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    height: 3em;
+    background: black;
+}
+
+main {
+    flex: 1;
+    height: 43.5em;
+    background: #F6F7EB;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center {
+    min-width: 80em;
+    max-width: 80em;
+    min-height: 20em;
+    border: 5px solid #E94F37;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #C1BDB3;
+}
+
+.words-container {
+    margin: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #393E41;
+    background: #F6F7EB;
+}
+
+.word {
+    font-size: 2rem;
+    padding: 0.2em;
+}
+
+.word-highlight {
+    font-size: 2.5rem;
+    padding: 0.2em;
+    border: 2px solid red;
+}
+
+input {
+    font-size: 1.5rem;
+    height: 2em;
+    width: 15em;
+    margin: 1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border: 3px solid #393E41;
+    background: #F6F7EB;
+}
+
+input:focus {
+    outline: none;
+}
+
+results {
+    border: 3px solid #3f88c5;
+    color: red;
+}
+
+h3 {
+    margin: 1em;
+}
+
+footer {
+    width: 100%;
+    height: 3em;
+    background: black;
+    position: fixed;
+}
