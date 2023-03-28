@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <title>Typing trainer</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="styles.css" rel="stylesheet">
-        <link rel="shortcut icon" href="#">
-    </head>
+<head>
+    <title>Typing trainer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styles.css" rel="stylesheet">
+    <link rel="shortcut icon" href="#">
+</head>
 
-    <body>
-        <div class="wrapper">
-            <!-- <header> -->
-            <!-- </header> -->
+<body>
+    <div class="wrapper">
+        <!-- <header> -->
+        <!-- </header> -->
 
-            <main>
-                <div class="center">
-                    <p class="words-container">
+        <main>
+            <div class="center">
+                <div class="words-container">
+                    <p class="words">
                         <span class="word" id="word-0"></span>
                         <span class="word" id="word-1"></span>
                         <span class="word" id="word-2"></span>
@@ -26,21 +27,24 @@
                         <span class="word" id="word-6"></span>
                         <span class="word" id="word-7"></span>
                     </p>
-                    <form id="form" onsubmit="return false">
-                        <input type="text" 
-                            placeholder=""
-                            autocomplete="off" 
-                            autocapitalize="none" 
-                            spellcheck="false">
-                    </form>
-                    <h3>Press ENTER to restart</h3>
                 </div>
-            </main>
+                <div class="input-timer">
+                    <form id="form" onsubmit="return false">
+                        <input type="text" placeholder="" autocomplete="off" autocapitalize="none" spellcheck="false">
+                        <div class="timer-container">
+                            <p class="timer">
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                <h3>Press ENTER to restart</h3>
+            </div>
+        </main>
 
-            <!-- <footer> -->
-            <!-- </footer> -->
-        </div>
-        <script src="scripts.js" type="module"></script>
-    </body>
+        <!-- <footer> -->
+        <!-- </footer> -->
+    </div>
+    <script src="scripts.js" type="module"></script>
+</body>
 
 </html>

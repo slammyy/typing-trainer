@@ -36,13 +36,17 @@ main {
 }
 
 .words-container {
-    margin: 1em;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 1em;
     border: 3px solid #393E41;
     border-radius: 5px;
     background: #F6F7EB;
+}
+
+.words {
+    padding: 1em;
 }
 
 .word {
@@ -71,6 +75,16 @@ input {
 
 input:focus {
     outline: none;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timer {
+    font-size: 1.5em;
 }
 
 .results {
