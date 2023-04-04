@@ -76,6 +76,7 @@ main {
 
 .settings-button:hover {
     border-color: var(--orange);
+    fill: var(--orange);
 }
 
 .settings-button > img {
@@ -107,6 +108,7 @@ main {
 
 .settings-container-button:hover {
     border-color: var(--orange);
+    color: var(--orange);
 }
 
 .settings-buttons {
@@ -137,6 +139,7 @@ main {
 
 .return-button:hover {
     border-color: var(--orange);
+    color: var(--orange);
 }
 
 input {
