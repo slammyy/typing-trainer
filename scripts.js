@@ -148,7 +148,7 @@ let refresh = () => {
 
 document.onload = refresh();
 
-returnButton.onclick = function returnToMain() {
+returnButton.onclick = () => {
     refresh();
 };
 
@@ -160,37 +160,37 @@ let handleEnter = (event) => {
 
 document.addEventListener('keyup', handleEnter);
 
-settingsButton.onclick = function renderSettings() {
+settingsButton.onclick = () => {
     center.remove();
     main.append(settingsContainer);
 }
 
-button15.onclick = function changeTimer() {
+button15.onclick = () => {
     timerTime = 15;
     refresh();
 }
 
-button30.onclick = function changeTimer() {
+button30.onclick = () => {
     timerTime = 30;
     refresh();
 }
 
-button60.onclick = function changeTimer() {
+button60.onclick = () => {
     timerTime = 60;
     refresh();
 }
 
-button120.onclick = function changeTimer() {
+button120.onclick = () => {
     timerTime = 120;
     refresh();
 }
 
-englishButton.onclick = function changeLenguage() {
+englishButton.onclick = () => {
     language = easyEnglishWords;
     refresh();
 }
 
-russianButton.onclick = function changeLenguage() {
+russianButton.onclick = () => {
     language = easyRussianWords;
     refresh();
 }
