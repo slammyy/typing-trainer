@@ -28,7 +28,8 @@ let language = easyEnglishWords;
 let fg = "#A89984";
 let red = "#cc241d";
 let green = "#98971a";
-let orange = "#D65D0E";
+// let orange = "#b59681";
+let highlight = "#403a34";
 
 let stopGame = () => {
     let englishSpeed = `<p><b>${correct / (timerTime / 60)}</b> WPM</p>`;
@@ -70,9 +71,9 @@ let handleSpace = (event) => {
     if (event.key === " ") {
         if (wordCounter < 7) {
             document.getElementById(`first-row-word-${wordCounter + 1}`)
-                .style.background = orange;
-            document.getElementById(`first-row-word-${wordCounter + 1}`)
-                .style.color = 'black';
+                .style.background = highlight;
+            // document.getElementById(`first-row-word-${wordCounter + 1}`)
+            //     .style.color = 'black';
         }
 
         if (input.value === word.innerHTML + " ") {
@@ -96,9 +97,9 @@ let handleSpace = (event) => {
                 document.getElementById(`first-row-word-${i}`)
                     .style.background = 'none';
                 document.getElementById(`first-row-word-0`)
-                    .style.background = orange;
-                document.getElementById(`first-row-word-0`)
-                    .style.color = 'black';
+                    .style.background = highlight;
+                // document.getElementById(`first-row-word-0`)
+                //     .style.color = 'black';
                 wordCounter = 0;
             }
             renderSecondRow();
@@ -112,8 +113,8 @@ let renderFirstRow = () => {
         document.getElementById(`first-row-word-${i}`).innerHTML = randomIndex;
         document.getElementById(`first-row-word-${i}`).style.color = fg;
         document.getElementById(`first-row-word-${i}`).style.background = 'none';
-        document.getElementById(`first-row-word-0`).style.background = orange;
-        document.getElementById(`first-row-word-0`).style.color = 'black';
+        document.getElementById(`first-row-word-0`).style.background = highlight;
+        // document.getElementById(`first-row-word-0`).style.color = 'black';
         wordCounter = 0;
     }
 }

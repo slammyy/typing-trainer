@@ -5,7 +5,7 @@
     --fg: #A89984;
     --red: #cc241d;
     --green: #98971a;
-    --orange: #D65D0E;
+    --highlight: #b59681;
 }
 
 * {
@@ -75,8 +75,8 @@ main {
 }
 
 .settings-button:hover {
-    border-color: var(--orange);
-    fill: var(--orange);
+    border-color: var(--highlight);
+    fill: var(--highlight);
 }
 
 .settings-button > img {
@@ -107,8 +107,8 @@ main {
 }
 
 .settings-container-button:hover {
-    border-color: var(--orange);
-    color: var(--orange);
+    border-color: var(--highlight);
+    color: var(--highlight);
 }
 
 .settings-buttons {
@@ -138,8 +138,8 @@ main {
 }
 
 .return-button:hover {
-    border-color: var(--orange);
-    color: var(--orange);
+    border-color: var(--highlight);
+    color: var(--highlight);
 }
 
 input {
