@@ -16,6 +16,7 @@ let wordsContainer = document.querySelector(".words-container");
 let timer = document.querySelector(".timer");
 let form = document.querySelector("form");
 let input = document.querySelector("input");
+let helpContainer = document.querySelector(".help");
 let results = document.createElement("div");
 
 let wordCounter = 0;
@@ -28,20 +29,29 @@ let language = easyEnglishWords;
 let fg = "#A89984";
 let red = "#cc241d";
 let green = "#98971a";
-// let orange = "#b59681";
 let highlight = "#403a34";
 
 let stopGame = () => {
-    let englishSpeed = `<p><b>${correct / (timerTime / 60)}</b> WPM</p>`;
-    let russianSpeed = `<p><b>${correct / (timerTime / 60)}</b> СВМ</p>`;
-    results.setAttribute('class', 'results');
+    let wpm = correct / (timerTime / 60);
 
     if (language == easyEnglishWords) {
-        results.innerHTML = englishSpeed;
+        if (localStorage.getItem("BestScoreEnglish") < wpm) {
+            localStorage.setItem("BestScoreEnglish", wpm);
+            results.innerHTML = `New best: <b>${wpm}</b> WPM`;
+        } else {
+            results.innerHTML = `<b>${wpm}</b> WPM`;
+
+        }
     } else if (language == easyRussianWords) {
-        results.innerHTML = russianSpeed;
+        if (localStorage.getItem("BestScoreRussian") < wpm) {
+            localStorage.setItem("BestScoreRussian", wpm);
+            results.innerHTML = `New best: <b>${wpm}</b> WPM`;
+        } else {
+            results.innerHTML = `<b>${wpm}</b> WPM`;
+        }
     }
 
+    results.setAttribute('class', 'results');
     input.removeEventListener('keyup', handleSpace);
     wordsContainer.replaceWith(results);
 }
@@ -72,8 +82,6 @@ let handleSpace = (event) => {
         if (wordCounter < 7) {
             document.getElementById(`first-row-word-${wordCounter + 1}`)
                 .style.background = highlight;
-            // document.getElementById(`first-row-word-${wordCounter + 1}`)
-            //     .style.color = 'black';
         }
 
         if (input.value === word.innerHTML + " ") {
@@ -98,8 +106,6 @@ let handleSpace = (event) => {
                     .style.background = 'none';
                 document.getElementById(`first-row-word-0`)
                     .style.background = highlight;
-                // document.getElementById(`first-row-word-0`)
-                //     .style.color = 'black';
                 wordCounter = 0;
             }
             renderSecondRow();
@@ -114,7 +120,6 @@ let renderFirstRow = () => {
         document.getElementById(`first-row-word-${i}`).style.color = fg;
         document.getElementById(`first-row-word-${i}`).style.background = 'none';
         document.getElementById(`first-row-word-0`).style.background = highlight;
-        // document.getElementById(`first-row-word-0`).style.color = 'black';
         wordCounter = 0;
     }
 }
@@ -127,9 +132,22 @@ let renderSecondRow = () => {
     }
 }
 
+let hideHelp = (event) => {
+    if (event.key === "Enter") {
+        refresh();
+    }
+}
+
+let showHelp = () => {
+    center.remove();
+    main.append(helpContainer);
+    document.addEventListener('keyup', hideHelp);
+}
+
 let refresh = () => {
     main.append(center);
     if (settingsContainer) settingsContainer.remove();
+    if (helpContainer) helpContainer.remove();
     var elementExists = document.querySelector(".results");
     if (elementExists) results.replaceWith(wordsContainer);
     renderFirstRow();
@@ -144,6 +162,7 @@ let refresh = () => {
     form.reset();
     input.addEventListener('keyup', handleSpace);
     input.addEventListener('keypress', startTimer);
+    document.removeEventListener('keyup', hideHelp);
     input.focus();
 }
 
@@ -153,9 +172,32 @@ returnButton.onclick = () => {
     refresh();
 };
 
+
 let handleEnter = (event) => {
     if (event.key === "Enter") {
-        refresh();
+        if (input.value === "/russian" || input.value === "/ru") {
+            language = easyRussianWords;
+            refresh();
+        } else if (input.value === "/english" || input.value === "/en") {
+            language = easyEnglishWords;
+            refresh();
+        } else if (input.value === "/15") {
+            timerTime = 15;
+            refresh();
+        } else if (input.value === "/30") {
+            timerTime = 30;
+            refresh();
+        } else if (input.value === "/60") {
+            timerTime = 60;
+            refresh();
+        } else if (input.value === "/120") {
+            timerTime = 120;
+            refresh();
+        } else if (input.value === "/help") {
+            showHelp();
+        } else {
+            refresh();
+        }
     }
 }
 
