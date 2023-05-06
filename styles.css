@@ -3,6 +3,7 @@
 :root {
     --bg: #282828;
     --fg: #A89984;
+    --white: #ede7d8;
     --red: #cc241d;
     --green: #98971a;
     --highlight: #b59681;
@@ -58,6 +59,7 @@ main {
 }
 
 .word {
+    color: var(--white);
     font-size: 2rem;
     padding: 0.2em;
     border-radius: 2px;

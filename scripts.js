@@ -27,6 +27,7 @@ let timerTime = 30;
 let language = easyEnglishWords;
 
 let fg = "#A89984";
+let white = "#ede7d8";
 let red = "#cc241d";
 let green = "#98971a";
 let highlight = "#403a34";
@@ -101,7 +102,7 @@ let handleSpace = (event) => {
                 document.getElementById(`first-row-word-${i}`)
                     .innerHTML = document.getElementById(`second-row-word-${i}`).innerHTML;
                 document.getElementById(`first-row-word-${i}`)
-                    .style.color = fg;
+                    .style.color = white;
                 document.getElementById(`first-row-word-${i}`)
                     .style.background = 'none';
                 document.getElementById(`first-row-word-0`)
@@ -117,7 +118,7 @@ let renderFirstRow = () => {
     for (let i = 0; i < 8; i++) {
         const randomIndex = language[Math.floor(Math.random() * language.length)];
         document.getElementById(`first-row-word-${i}`).innerHTML = randomIndex;
-        document.getElementById(`first-row-word-${i}`).style.color = fg;
+        document.getElementById(`first-row-word-${i}`).style.color = white;
         document.getElementById(`first-row-word-${i}`).style.background = 'none';
         document.getElementById(`first-row-word-0`).style.background = highlight;
         wordCounter = 0;
