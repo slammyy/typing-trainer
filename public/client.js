@@ -1,47 +1,39 @@
 import { easyEnglishWords } from "./words.js";
 import { easyRussianWords } from "./words.js";
 
-let button15 = document.querySelector("#button-15");
-let button30 = document.querySelector("#button-30");
-let button60 = document.querySelector("#button-60");
-let button120 = document.querySelector("#button-120");
-let englishButton = document.querySelector("#english");
-let russianButton = document.querySelector("#russian");
-let returnButton = document.querySelector(".return-button");
 let main = document.querySelector("main");
 let center = document.querySelector(".center");
-let settingsButton = document.querySelector(".settings-button");
-let settingsContainer = document.querySelector(".settings-container");
 let wordsContainer = document.querySelector(".words-container");
 let timer = document.querySelector(".timer");
 let form = document.querySelector("form");
 let input = document.querySelector("input");
-let helpContainer = document.querySelector(".help");
 let results = document.createElement("div");
 
 let wordCounter = 0;
 let correct = 0;
 let decrimentInterval;
 let gameTimeout;
-let timerTime = 30;
+let timerTime = 15;
 let language = easyEnglishWords;
 
 let fg = "#A89984";
 let white = "#ede7d8";
 let red = "#cc241d";
 let green = "#98971a";
-let highlight = "#403a34";
+let highlight = "#24201c";
 
 // function that make POST request and send WPM to backend
-const sendWpm = async (data) => {
-    data = { data }
-    await fetch('/wpm', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    });
+const sendWpm = async (wpm) => {
+    if (wpm != 0) {
+        wpm = { wpm }
+        await fetch('/wpm', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(wpm)
+        });
+    }
 };
 
 let stopGame = () => {
@@ -60,8 +52,10 @@ let stopGame = () => {
         if (localStorage.getItem("BestScoreRussian") < wpm) {
             localStorage.setItem("BestScoreRussian", wpm);
             results.innerHTML = `New best: <b>${wpm}</b> WPM`;
+            sendWpm(wpm);
         } else {
             results.innerHTML = `<b>${wpm}</b> WPM`;
+            sendWpm(wpm);
         }
     }
 
@@ -146,23 +140,9 @@ let renderSecondRow = () => {
     }
 }
 
-let hideHelp = (event) => {
-    if (event.key === "Enter") {
-        refresh();
-    }
-}
-
-let showHelp = () => {
-    center.remove();
-    main.append(helpContainer);
-    document.addEventListener('keyup', hideHelp);
-}
-
 let refresh = () => {
     main.append(center);
-    if (settingsContainer) settingsContainer.remove();
-    if (helpContainer) helpContainer.remove();
-    var elementExists = document.querySelector(".results");
+    let elementExists = document.querySelector(".results");
     if (elementExists) results.replaceWith(wordsContainer);
     renderFirstRow();
     renderSecondRow();
@@ -176,15 +156,11 @@ let refresh = () => {
     form.reset();
     input.addEventListener('keyup', handleSpace);
     input.addEventListener('keypress', startTimer);
-    document.removeEventListener('keyup', hideHelp);
+    center.style.visibility = 'visible';
     input.focus();
 }
 
 document.onload = refresh();
-
-returnButton.onclick = () => {
-    refresh();
-};
 
 
 let handleEnter = (event) => {
@@ -208,7 +184,7 @@ let handleEnter = (event) => {
             timerTime = 120;
             refresh();
         } else if (input.value === "/help") {
-            showHelp();
+            window.location.href = "/help";
         } else {
             refresh();
         }
@@ -216,38 +192,3 @@ let handleEnter = (event) => {
 }
 
 document.addEventListener('keyup', handleEnter);
-
-settingsButton.onclick = () => {
-    center.remove();
-    main.append(settingsContainer);
-}
-
-button15.onclick = () => {
-    timerTime = 15;
-    refresh();
-}
-
-button30.onclick = () => {
-    timerTime = 30;
-    refresh();
-}
-
-button60.onclick = () => {
-    timerTime = 60;
-    refresh();
-}
-
-button120.onclick = () => {
-    timerTime = 120;
-    refresh();
-}
-
-englishButton.onclick = () => {
-    language = easyEnglishWords;
-    refresh();
-}
-
-russianButton.onclick = () => {
-    language = easyRussianWords;
-    refresh();
-}

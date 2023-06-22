@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
+:root {
+    --bg: #282828;
+    --fg: #A89984;
+    --white: #ede7d8;
+    --red: #cc241d;
+    --green: #98971a;
+    --highlight: #b59681;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu Mono', monospace;
+    color: var(--fg);
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.help {
+    width: 685px;
+    font-size: 2.3em;
+    text-align: justify;
+    text-justify: inter-word;
+}

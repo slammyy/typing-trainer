@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
 
 :root {
     --bg: #282828;
@@ -12,7 +12,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Golos Text', sans-serif;
+    font-family: 'Ubuntu Mono', monospace;
     color: var(--fg);
 }
 
@@ -37,6 +37,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    visibility: hidden;
 }
 
 .words-container {
@@ -61,87 +62,9 @@ main {
 .word {
     color: var(--white);
     font-size: 2rem;
+    font-weight: bold;
     padding: 0.2em;
     border-radius: 2px;
-}
-
-.settings-button {
-    border: 3px solid var(--fg);
-    border-radius: 5px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    fill: var(--fg);
-}
-
-.settings-button:hover {
-    border-color: var(--highlight);
-    fill: var(--highlight);
-}
-
-.settings-button > img {
-    width: 30px;
-}
-
-.settings-container {
-    padding: 10px;
-    border-radius: 5px;
-    min-width: 10em;
-    min-height: 10em;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.settings-container-button {
-    margin: 20px;
-    padding-inline: 30px;
-    padding-block: 10px;
-    border: 3px solid var(--fg);
-    border-radius: 5px;
-    background: var(--bg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em;
-}
-
-.settings-container-button:hover {
-    border-color: var(--highlight);
-    color: var(--highlight);
-}
-
-.settings-buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
-
-.grid-span-col-2 {
-    grid-column: span 2;
-}
-
-.settings-container > .settings-container-button {
-    width: 87%;
-}
-
-.return-button {
-    font-size: 1.5em;
-    margin: 20px;
-    padding: 30px;
-    border: 3px solid var(--fg);
-    border-radius: 5px;
-    background: var(--bg);
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.return-button:hover {
-    border-color: var(--highlight);
-    color: var(--highlight);
 }
 
 input {
@@ -201,4 +124,23 @@ h3 {
 
 .hint {
     text-align: center;
+}
+
+@media (max-width: 420px) {
+    .words-container {
+        padding-inline: 0em;
+    }
+    .first-row {
+        display: flex;
+        flex-direction: column;
+    }
+    .second-row {
+        display: none;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }

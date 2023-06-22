@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Typing trainer</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="style.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../assets/favicon.svg">
+    </head>
+
+    <body>
+        <main>
+            <p class="help">
+                On main screen press enter to restart test.
+                Type <b>/ + language </b>to change language.
+                Type <b>/ + seconds </b>to change timer.
+                For example commmand <b>/russian </b>changes language to russian
+                and <b>/15 </b>changes timer to 15 seconds.
+                Possible timers - 15, 30, 60, 120.
+                Press enter to return.
+            </p>
+        </main>
+        <script>
+            document.addEventListener('keyup', hideHelp = (event) => {
+                if (event.key === "Enter") {
+                    location.replace('/');
+                }
+            });
+        </script>
+    </body>
+</html>
