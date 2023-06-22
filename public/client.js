@@ -20,13 +20,19 @@ let fg = "#A89984";
 let white = "#e2d9c1";
 let red = "#cc241d";
 let green = "#98971a";
-let highlight = "#141617";
+let highlight = "#191b1c";
+
+const getMaxWpm = async () => {
+    const res = await fetch('/getMaxWpm');
+    const data = await res.json();
+    return data;
+};
 
 // function that make POST request and send WPM to backend
 const sendWpm = async (wpm) => {
     if (wpm != 0) {
         wpm = { wpm }
-        await fetch('/wpm', {
+        await fetch('/requestWpm', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -36,11 +42,11 @@ const sendWpm = async (wpm) => {
     }
 };
 
-let stopGame = () => {
+
+let stopGame = async () => {
     let wpm = correct / (timerTime / 60);
     if (language == easyEnglishWords) {
-        if (localStorage.getItem("BestScoreEnglish") < wpm) {
-            localStorage.setItem("BestScoreEnglish", wpm);
+        if (await getMaxWpm() < wpm) {
             results.innerHTML = `New best: <b>${wpm}</b> WPM`;
             sendWpm(wpm);
         } else {
@@ -48,8 +54,7 @@ let stopGame = () => {
             sendWpm(wpm);
         }
     } else if (language == easyRussianWords) {
-        if (localStorage.getItem("BestScoreRussian") < wpm) {
-            localStorage.setItem("BestScoreRussian", wpm);
+        if (await getMaxWpm() < wpm) {
             results.innerHTML = `New best: <b>${wpm}</b> WPM`;
             sendWpm(wpm);
         } else {
@@ -67,11 +72,9 @@ let updateTimer = () => {
     if (timer.innerHTML > 0) {
         timer.innerHTML--;
     }
-
     if (timer.innerHTML < 4) {
         timer.style.color = red;
     }
-
     if (timer.innerHTML == 0) {
         timer.style.color = white;
     }
@@ -91,7 +94,6 @@ let handleSpace = (event) => {
             document.getElementById(`first-row-word-${wordCounter + 1}`)
                 .style.background = highlight;
         }
-
         if (input.value === word.innerHTML + " ") {
             word.style.color = green;
             correct++;
