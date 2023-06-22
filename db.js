@@ -11,7 +11,13 @@ const pool = new Pool({
 
 // function to insert WPM into database
 const insertWpm = (wpm) => {
-    pool.query(`insert into records(wpm) values (${wpm})`)
+    pool.query(`insert into records(wpm) values (${wpm});`);
 }
 
-module.exports = {pool, insertWpm};
+// funtion to get max WPM from database
+const getMaxWpm = async () => {
+    const maxWpm = await pool.query('select max(wpm) as max_wpm from records;');
+    return maxWpm.rows[0].max_wpm;
+}
+
+module.exports = {pool, insertWpm, getMaxWpm};
