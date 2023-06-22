@@ -1,19 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@700&display=swap');
 
 :root {
-    --bg: #282828;
-    --fg: #A89984;
-    --white: #ede7d8;
+    --bg: #1e2122;
+    --fg: #4e5457;
+    --white: #e2d9c1;
     --red: #cc241d;
     --green: #98971a;
-    --highlight: #b59681;
+    --highlight: #1d1a16;
 }
 
 * {
     margin: 0;
     padding: 0;
     font-family: 'Ubuntu Mono', monospace;
-    color: var(--fg);
+    color: var(--white);
 }
 
 

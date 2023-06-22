@@ -17,10 +17,10 @@ let timerTime = 15;
 let language = easyEnglishWords;
 
 let fg = "#A89984";
-let white = "#ede7d8";
+let white = "#e2d9c1";
 let red = "#cc241d";
 let green = "#98971a";
-let highlight = "#24201c";
+let highlight = "#141617";
 
 // function that make POST request and send WPM to backend
 const sendWpm = async (wpm) => {
@@ -38,7 +38,6 @@ const sendWpm = async (wpm) => {
 
 let stopGame = () => {
     let wpm = correct / (timerTime / 60);
-
     if (language == easyEnglishWords) {
         if (localStorage.getItem("BestScoreEnglish") < wpm) {
             localStorage.setItem("BestScoreEnglish", wpm);
@@ -74,11 +73,12 @@ let updateTimer = () => {
     }
 
     if (timer.innerHTML == 0) {
-        timer.style.color = fg;
+        timer.style.color = white;
     }
 }
 
 let startTimer = () => {
+    input.placeholder = "";
     gameTimeout = setTimeout(stopGame, timerTime * 1000);
     decrimentInterval = setInterval(updateTimer, 1000);
     input.removeEventListener('keypress', startTimer);
@@ -157,6 +157,7 @@ let refresh = () => {
     input.addEventListener('keyup', handleSpace);
     input.addEventListener('keypress', startTimer);
     center.style.visibility = 'visible';
+    input.placeholder = "/help";
     input.focus();
 }
 
