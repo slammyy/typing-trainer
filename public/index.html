@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Typing trainer</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="styles.css" rel="stylesheet">
+        <link rel="shortcut icon" href="#">
+    </head>
+    <body>
+        <main>
+            <div class="center">
+                <div class="words-container">
+                    <p class="first-row">
+                        <span class="word" id="first-row-word-0"></span>
+                        <span class="word" id="first-row-word-1"></span>
+                        <span class="word" id="first-row-word-2"></span>
+                        <span class="word" id="first-row-word-3"></span>
+                        <span class="word" id="first-row-word-4"></span>
+                        <span class="word" id="first-row-word-5"></span>
+                        <span class="word" id="first-row-word-6"></span>
+                        <span class="word" id="first-row-word-7"></span>
+                    </p>
+                    <p class="second-row">
+                        <span class="word" id="second-row-word-0"></span>
+                        <span class="word" id="second-row-word-1"></span>
+                        <span class="word" id="second-row-word-2"></span>
+                        <span class="word" id="second-row-word-3"></span>
+                        <span class="word" id="second-row-word-4"></span>
+                        <span class="word" id="second-row-word-5"></span>
+                        <span class="word" id="second-row-word-6"></span>
+                        <span class="word" id="second-row-word-7"></span>
+                    </p>
+                </div>
+                <form id="form" onsubmit="return false">
+                    <div class="settings-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 30 30">
+                            <path
+                                d="M 19.587891 3.0097656 C 17.515453 2.9278281 15.416484 3.6772656 13.833984 5.2597656 C 11.85904 7.23471 11.601587 9.5983278 12.501953 11.841797 L 4.171875 20.171875 C 2.609875 21.733875 2.609875 24.266125 4.171875 25.828125 C 5.733875 27.390125 8.266125 27.390125 9.828125 25.828125 L 18.158203 17.498047 C 20.401672 18.398413 22.76529 18.14096 24.740234 16.166016 C 26.850234 14.056016 27.476859 11.029141 26.630859 8.3691406 L 22 13 L 18 12 L 17 8 L 21.630859 3.3691406 C 20.965859 3.1576406 20.278703 3.0370781 19.587891 3.0097656 z M 7 21 C 8.105 21 9 21.895 9 23 C 9 24.105 8.105 25 7 25 C 5.895 25 5 24.105 5 23 C 5 21.895 5.895 21 7 21 z">
+                            </path>
+                        </svg>
+                    </div>
+                    <input type="text" placeholder="" autocomplete="off" autocapitalize="none" spellcheck="false">
+                    <div class="timer-container">
+                        <p class="timer">
+                        </p>
+                    </div>
+                </form>
+                <h3>Type /help and press enter to see help</h3>
+            </div>
+            <div class="settings-container">
+                <div class="settings-buttons">
+                    <button class="settings-container-button" id="button-15">15</button>
+                    <button class="settings-container-button" id="button-30">30</button>
+                    <button class="settings-container-button" id="button-60">60</button>
+                    <button class="settings-container-button" id="button-120">120</button>
+                    <button class="settings-container-button grid-span-col-2" id="english">english</button>
+                    <button class="settings-container-button grid-span-col-2" id="russian">russian</button>
+                </div>
+                <button class="return-button">return</button>
+            </div>
+            <p class="help">
+                On main screen press enter to restart test.
+                Type /language to change language.
+                Type /seconds to change timer.
+                For example commmand /russian changes language to russian
+                and /15 changes timer to 15 seconds.
+                Possible timers - 15, 30, 60, 120.
+                Press enter to return.
+            </p>
+        </main>
+        <script src="scripts.js" type="module"></script>
+    </body>
+</html>

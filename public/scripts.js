@@ -32,6 +32,18 @@ let red = "#cc241d";
 let green = "#98971a";
 let highlight = "#403a34";
 
+// function that make POST request and send WPM to backend
+const sendWpm = async (data) => {
+    data = { data }
+    await fetch('/wpm', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+};
+
 let stopGame = () => {
     let wpm = correct / (timerTime / 60);
 
@@ -39,9 +51,10 @@ let stopGame = () => {
         if (localStorage.getItem("BestScoreEnglish") < wpm) {
             localStorage.setItem("BestScoreEnglish", wpm);
             results.innerHTML = `New best: <b>${wpm}</b> WPM`;
+            sendWpm(wpm);
         } else {
             results.innerHTML = `<b>${wpm}</b> WPM`;
-
+            sendWpm(wpm);
         }
     } else if (language == easyRussianWords) {
         if (localStorage.getItem("BestScoreRussian") < wpm) {
