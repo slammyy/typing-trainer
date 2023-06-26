@@ -1,6 +1,3 @@
-import { easyEnglishWords } from "./words.js";
-import { easyRussianWords } from "./words.js";
-
 let main = document.querySelector("main");
 let center = document.querySelector(".center");
 let wordsContainer = document.querySelector(".words-container");
@@ -14,16 +11,24 @@ let correct = 0;
 let decrimentInterval;
 let gameTimeout;
 let timerTime = 15;
-let language = easyEnglishWords;
+let language = "english";
 
-let fg = "#A89984";
-let white = "#e2d9c1";
-let red = "#cc241d";
-let green = "#98971a";
-let highlight = "#191b1c";
+const fg = "#A89984";
+const white = "#e2d9c1";
+const red = "#cc241d";
+const green = "#98971a";
+const highlight = "#191b1c";
+
+const getWords = async (language) => {
+    const res = await fetch(`/get_words/${language}`);
+    const data = await res.json();
+    return data;
+};
+
+let wordsArray = await getWords(language);
 
 const getMaxWpm = async () => {
-    const res = await fetch('/getMaxWpm');
+    const res = await fetch('/get_max_wpm');
     const data = await res.json();
     return data;
 };
@@ -32,7 +37,7 @@ const getMaxWpm = async () => {
 const sendWpm = async (wpm) => {
     if (wpm != 0) {
         wpm = { wpm }
-        await fetch('/requestWpm', {
+        await fetch('/request_wpm', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -42,10 +47,9 @@ const sendWpm = async (wpm) => {
     }
 };
 
-
 let stopGame = async () => {
     let wpm = correct / (timerTime / 60);
-    if (language == easyEnglishWords) {
+    if (language == "english") {
         if (await getMaxWpm() < wpm) {
             results.innerHTML = `New best: <b>${wpm}</b> WPM`;
             sendWpm(wpm);
@@ -53,7 +57,7 @@ let stopGame = async () => {
             results.innerHTML = `<b>${wpm}</b> WPM`;
             sendWpm(wpm);
         }
-    } else if (language == easyRussianWords) {
+    } else if (language == "russian") {
         if (await getMaxWpm() < wpm) {
             results.innerHTML = `New best: <b>${wpm}</b> WPM`;
             sendWpm(wpm);
@@ -125,8 +129,8 @@ let handleSpace = (event) => {
 
 let renderFirstRow = () => {
     for (let i = 0; i < 8; i++) {
-        const randomIndex = language[Math.floor(Math.random() * language.length)];
-        document.getElementById(`first-row-word-${i}`).innerHTML = randomIndex;
+        const randomIndex = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+        document.getElementById(`first-row-word-${i}`).innerHTML = randomIndex.word;
         document.getElementById(`first-row-word-${i}`).style.color = white;
         document.getElementById(`first-row-word-${i}`).style.background = 'none';
         document.getElementById(`first-row-word-0`).style.background = highlight;
@@ -136,13 +140,14 @@ let renderFirstRow = () => {
 
 let renderSecondRow = () => {
     for (let i = 0; i < 8; i++) {
-        const randomIndex = language[Math.floor(Math.random() * language.length)];
-        document.getElementById(`second-row-word-${i}`).innerHTML = randomIndex;
+        const randomIndex = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+        document.getElementById(`second-row-word-${i}`).innerHTML = randomIndex.word;
         wordCounter = 0;
     }
 }
 
-let refresh = () => {
+let refresh = async () => {
+    wordsArray = await getWords(language);
     main.append(center);
     let elementExists = document.querySelector(".results");
     if (elementExists) results.replaceWith(wordsContainer);
@@ -165,14 +170,13 @@ let refresh = () => {
 
 document.onload = refresh();
 
-
 let handleEnter = (event) => {
     if (event.key === "Enter") {
         if (input.value === "/russian" || input.value === "/ru") {
-            language = easyRussianWords;
+            language = "russian";
             refresh();
         } else if (input.value === "/english" || input.value === "/en") {
-            language = easyEnglishWords;
+            language = "english";
             refresh();
         } else if (input.value === "/15") {
             timerTime = 15;
