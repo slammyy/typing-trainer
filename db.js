@@ -20,4 +20,9 @@ const getMaxWpm = async () => {
     return maxWpm.rows[0].max_wpm;
 }
 
-module.exports = {pool, insertWpm, getMaxWpm};
+const getWords = async (language) => {
+    const words = await pool.query(`select word from ${language}_words order by random() limit 100;`);
+    return words.rows;
+}
+
+module.exports = {pool, insertWpm, getMaxWpm, getWords};
