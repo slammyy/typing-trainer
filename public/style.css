@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 
 :root {
     --bg: #1e2122;
@@ -12,7 +12,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     color: var(--white);
 }
 
@@ -46,7 +46,6 @@ main {
     justify-content: center;
     margin: 1em;
     border: 3px solid var(--fg);
-    border-radius: 5px;
     background: var(--bg);
 }
 
@@ -63,7 +62,6 @@ main {
     color: var(--white);
     font-size: 2rem;
     padding: 0.2em;
-    border-radius: 2px;
 }
 
 input {
@@ -74,7 +72,6 @@ input {
     padding-left: 0.5em;
     padding-right: 0.5em;
     border: 3px solid var(--fg);
-    border-radius: 5px;
     background: var(--bg);
 }
 
@@ -90,7 +87,6 @@ form {
 
 .timer-container {
     border: 3px solid var(--fg);
-    border-radius: 5px;
     background: var(--bg);
     min-width: 60px;
     height: 40px;
