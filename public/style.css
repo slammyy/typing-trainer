@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
 :root {
     --bg: #1e2122;
@@ -12,8 +12,9 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Rubik', sans-serif;
     color: var(--white);
+    border-radius: 5px;
 }
 
 body {
@@ -89,7 +90,7 @@ form {
     border: 3px solid var(--fg);
     background: var(--bg);
     min-width: 60px;
-    height: 40px;
+    height: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
