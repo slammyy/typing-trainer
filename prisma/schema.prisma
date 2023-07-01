@@ -7,17 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model english_words {
-  id   Int    @id @default(autoincrement())
-  word String @unique
-}
-
 model records {
   id  Int @id @default(autoincrement())
   wpm Int
-}
-
-model russian_words {
-  id   Int    @id @default(autoincrement())
-  word String @unique
 }

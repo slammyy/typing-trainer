@@ -1,3 +1,5 @@
+import { english_words, russian_words } from './words.js'
+
 let main = document.querySelector("main");
 let center = document.querySelector(".center");
 let wordsContainer = document.querySelector(".words-container");
@@ -11,7 +13,7 @@ let correct = 0;
 let decrimentInterval;
 let gameTimeout;
 let timerTime = 15;
-let language = "english";
+let language = english_words;
 
 const fg = "#A89984";
 const white = "#e2d9c1";
@@ -19,21 +21,13 @@ const red = "#cc241d";
 const green = "#98971a";
 const highlight = "#191b1c";
 
-const getWords = async (language) => {
-    const res = await fetch(`/get_words/${language}`);
-    const data = await res.json();
-    return data;
-};
-
-let wordsArray = await getWords(language);
-
 const getMaxWpm = async () => {
     const res = await fetch('/get_max_wpm');
     const data = await res.json();
     return data;
 };
 
-// function that make POST request and send WPM to backend
+// make POST request and send WPM to backend
 const sendWpm = async (wpm) => {
     if (wpm != 0) {
         wpm = { wpm }
@@ -49,7 +43,7 @@ const sendWpm = async (wpm) => {
 
 let stopGame = async () => {
     let wpm = correct / (timerTime / 60);
-    if (language == "english") {
+    if (language == english_words) {
         if (await getMaxWpm() < wpm) {
             results.innerHTML = `New best: <b>${wpm}</b> WPM`;
             sendWpm(wpm);
@@ -57,7 +51,7 @@ let stopGame = async () => {
             results.innerHTML = `<b>${wpm}</b> WPM`;
             sendWpm(wpm);
         }
-    } else if (language == "russian") {
+    } else if (language == russian_words) {
         if (await getMaxWpm() < wpm) {
             results.innerHTML = `New best: <b>${wpm}</b> WPM`;
             sendWpm(wpm);
@@ -129,8 +123,8 @@ let handleSpace = (event) => {
 
 let renderFirstRow = () => {
     for (let i = 0; i < 8; i++) {
-        const randomIndex = wordsArray[Math.floor(Math.random() * wordsArray.length)];
-        document.getElementById(`first-row-word-${i}`).innerHTML = randomIndex.word;
+        const randomIndex = language[Math.floor(Math.random() * language.length)];
+        document.getElementById(`first-row-word-${i}`).innerHTML = randomIndex;
         document.getElementById(`first-row-word-${i}`).style.color = white;
         document.getElementById(`first-row-word-${i}`).style.background = 'none';
         document.getElementById(`first-row-word-0`).style.background = highlight;
@@ -140,14 +134,13 @@ let renderFirstRow = () => {
 
 let renderSecondRow = () => {
     for (let i = 0; i < 8; i++) {
-        const randomIndex = wordsArray[Math.floor(Math.random() * wordsArray.length)];
-        document.getElementById(`second-row-word-${i}`).innerHTML = randomIndex.word;
+        const randomIndex = language[Math.floor(Math.random() * language.length)];
+        document.getElementById(`second-row-word-${i}`).innerHTML = randomIndex;
         wordCounter = 0;
     }
 }
 
-let refresh = async () => {
-    wordsArray = await getWords(language);
+let refresh = () => {
     main.append(center);
     let elementExists = document.querySelector(".results");
     if (elementExists) results.replaceWith(wordsContainer);
@@ -173,10 +166,10 @@ document.onload = refresh();
 let handleEnter = (event) => {
     if (event.key === "Enter") {
         if (input.value === "/russian" || input.value === "/ru") {
-            language = "russian";
+            language = russian_words;
             refresh();
         } else if (input.value === "/english" || input.value === "/en") {
-            language = "english";
+            language = english_words;
             refresh();
         } else if (input.value === "/15") {
             timerTime = 15;
