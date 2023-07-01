@@ -10,7 +10,7 @@ export const insertWpm = async (wpm) => {
 export const getMaxWpm = async () => {
     const maxWpm = await prisma.records.aggregate({
         _max: {
-            wpm
+            wpm: true
         }
     });
     return maxWpm;
