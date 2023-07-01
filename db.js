@@ -2,12 +2,12 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 // insert WPM into database
-const insertWpm = async (wpm) => {
+export const insertWpm = async (wpm) => {
     prisma.records.create(wpm);
 }
 
 // get max WPM from database
-const getMaxWpm = async () => {
+export const getMaxWpm = async () => {
     const maxWpm = await prisma.records.aggregate({
         _max: {
             wpm
@@ -16,4 +16,3 @@ const getMaxWpm = async () => {
     return maxWpm;
 }
 
-module.exports = { insertWpm, getMaxWpm };

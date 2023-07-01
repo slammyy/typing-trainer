@@ -1,5 +1,6 @@
-const { insertWpm, getMaxWpm, getWords } = require('./db');
-const express = require('express');
+import { insertWpm, getMaxWpm } from './db.js';
+import express from 'express';
+
 const app = express();
 const port = process.env.NODEPORT || 3000;
 
