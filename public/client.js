@@ -185,6 +185,8 @@ let handleEnter = (event) => {
             refresh();
         } else if (input.value === "/help") {
             window.location.href = "/help";
+        } else if (input.value === "/stats") {
+            window.location.href = "/stats";
         } else {
             refresh();
         }

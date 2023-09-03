@@ -1,4 +1,4 @@
-import { insertWpm, getMaxWpm } from './db.js';
+import { insertWpm, getMaxWpm, testsCompletedAmount, averageWpm} from './db.js';
 import express from 'express';
 
 const app = express();
@@ -10,6 +10,16 @@ app.use(express.static('public'));
 
 app.get('/get_max_wpm', async (req, res) => {
     res.json(await getMaxWpm());
+    res.end();
+});
+
+app.get('/get_total_completed', async (req, res) => {
+    res.json(await testsCompletedAmount());
+    res.end();
+});
+
+app.get('/get_average_wpm', async (req, res) => {
+    res.json(await averageWpm());
     res.end();
 });
 
