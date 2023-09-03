@@ -25,6 +25,6 @@ getTestsCompletedWpm();
 const getAverageWpm = async () => {
     const res = await fetch('/get_average_wpm');
     const data = await res.json();
-    averageWpm.textContent = data;
+    averageWpm.textContent = Math.floor(data);
 };
 getAverageWpm();
