@@ -30,15 +30,18 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
-ul {
+h1 {
     font-size: 3em;
-    justify-content: space-around;
+    margin-bottom: 0.5em;
 }
 
-li {
-    list-style: none;
-    font-size: 0.7em;
+p {
+    display: flex;
+    justify-content: space-between;
+    width: 685px;
+    font-size: 2.4em;
+    text-align: justify;
+    text-justify: inter-word;
 }
