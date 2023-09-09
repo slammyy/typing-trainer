@@ -1,7 +1,7 @@
 {
     "name": "typing-trainer",
     "version": "1.0.0",
-    "description": "Onepage web-site written on pure html, css, and javascript. ![typingBrowser](https://user-images.githubusercontent.com/45821857/231986060-1dc4dc3d-6659-4d39-9653-bbdf3c9bbb1d.png) ![settingsBrowser](https://user-images.githubusercontent.com/45821857/231986840-b523f9cb-5b00-4b7f-b8fd-fbdd8a3d8f12.png)",
+    "description": "Mouseless web-site to train you typing skills",
     "main": "server.js",
     "scripts": {
         "dev": "nodemon server.js",
@@ -20,11 +20,9 @@
     "homepage": "https://github.com/slammyy/typing-trainer#readme",
     "devDependencies": {
         "nodemon": "^2.0.22",
-        "pg": "^8.11.3",
-        "prisma": "^5.2.0"
+        "pg": "^8.11.3"
     },
     "dependencies": {
-        "@prisma/client": "^4.16.1",
         "dotenv": "^16.3.1",
         "express": "^4.18.2"
     }
